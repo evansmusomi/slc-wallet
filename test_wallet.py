@@ -12,4 +12,14 @@ class TestWallet(unittest.TestCase):
         self.wallet = Wallet()
 
     def test_deposit_works(self):
-        """ Checks that deposit adds money to wallet """
+        """ Checks that deposit adds money to wallet
+            1. Get amount to be deposited
+            2. Update balance with amount
+            3. Output = updated balance
+        """
+        self.wallet.balance = 0
+        self.assertEqual(self.wallet.deposit(1000), 1000)
+        self.assertEqual(self.wallet.deposit(500), 1500)
+
+    def test_amount_is_number(self):
+        self.assertEqual(self.wallet.deposit("1000"), "Numbers only please!")
